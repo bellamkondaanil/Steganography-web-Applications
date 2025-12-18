@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Steganography Web Tool</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Steganography Tool</h1>
+    <form id="stegForm" enctype="multipart/form-data">
+      <label>File Type:
+        <select name="method" id="method">
+          <option value="image">Image</option>
+          <option value="audio">Audio</option>
+          <option value="video">Video</option>
+          <option value="text">Text</option>
+        </select>
+      </label>
+      <label>Operation:
+        <select name="operation" id="operation">
+          <option value="encode">Encode</option>
+          <option value="decode">Decode</option>
+        </select>
+      </label>
+      <label>File:
+        <input type="file" name="file" required>
+      </label>
+      <div id="messageInput">
+        <label>Message (for encode):
+          <textarea name="message" rows="4" placeholder="Enter your secret message..."></textarea>
+        </label>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    document.getElementById("operation").addEventListener("change", function () {
+      const messageInput = document.getElementById("messageInput");
+      messageInput.style.display = this.value === "encode" ? "block" : "none";
+    });
+
+    document.getElementById("stegForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const response = await fetch("/process", {
+        method: "POST",
+        body: formData
+      });
+      const blob = await response.blob();
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = "";
+
+      if (formData.get("operation") === "decode") {
+        const text = await blob.text();
+        outputDiv.innerHTML = "<strong>Decoded Message:</strong><br>" + text;
+      } else {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "output_encoded";
+        a.textContent = "Download Encoded File";
+        a.className = "download-link";
+        outputDiv.appendChild(a);
+      }
+    });
+  </script>
+</body>
+</html>

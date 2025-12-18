@@ -1,0 +1,72 @@
+
+body {
+  background: #f0f8ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+h1 {
+  text-align: center;
+  color: #0044cc;
+}
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+textarea {
+  resize: vertical;
+}
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  width: 100%;
+  background-color: #28a745;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #218838;
+}
+.output {
+  margin-top: 30px;
+  background: #e9f5ff;
+  padding: 20px;
+  border: 1px solid #b3d7ff;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+.download-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.download-link:hover {
+  background-color: #0056b3;
+}
