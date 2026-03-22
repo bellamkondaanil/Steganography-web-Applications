@@ -1,0 +1,13 @@
+All required project dependencies are listed in a requirements.txt file to ensure easy installation and reproducibility of the project environment
+
+cd "C: your path"
+
+python -m venv venv
+
+.\venv\Scripts\Activate
+
+pip install fastapi uvicorn pillow opencv-python numpy tqdm python-multipart jinja2
+
+cd backend
+
+uvicorn main:app --reload
